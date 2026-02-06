@@ -1,1 +1,261 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pedido Especial 💖</title>
 
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;1,500&family=Great+Vibes&display=swap" rel="stylesheet">
+
+<style>
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    background: linear-gradient(to bottom, #fff0f5, #ffe4ec);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Playfair Display', serif;
+    overflow: hidden;
+}
+
+/* Corações */
+.heart {
+    position: absolute;
+    width: 26px;
+    height: 26px;
+    background: #ff4d6d;
+    transform: rotate(45deg);
+    animation: float 7s infinite ease-in;
+}
+.heart::before,
+.heart::after {
+    content: '';
+    position: absolute;
+    width: 26px;
+    height: 26px;
+    background: #ff4d6d;
+    border-radius: 50%;
+}
+.heart::before { top: -13px; left: 0; }
+.heart::after { left: -13px; top: 0; }
+
+@keyframes float {
+    0% { transform: translateY(0) rotate(45deg); opacity: 0; }
+    30% { opacity: 1; }
+    100% { transform: translateY(-900px) rotate(45deg); opacity: 0; }
+}
+
+/* Envelope */
+.envelope {
+    width: 340px;
+    height: 250px;
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    position: relative;
+}
+
+.envelope::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #ffe1ea;
+    clip-path: polygon(0 0, 100% 0, 50% 55%);
+}
+
+/* Botão abrir */
+.open-btn {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 12px 24px;
+    background: #ff4d6d;
+    color: #fff;
+    border: none;
+    border-radius: 25px;
+    font-size: 15px;
+    cursor: pointer;
+    box-shadow: 0 8px 18px rgba(0,0,0,0.25);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: translateX(-50%) scale(1); }
+    50% { transform: translateX(-50%) scale(1.06); }
+    100% { transform: translateX(-50%) scale(1); }
+}
+
+/* Carta */
+.letter {
+    position: absolute;
+    width: 320px;
+    height: 450px;
+    background: #fff;
+    top: 15px;
+    left: 50%;
+    transform: translateX(-50%) scale(0);
+    border-radius: 16px;
+    box-shadow: 0 30px 70px rgba(0,0,0,0.3);
+    padding: 22px;
+    text-align: center;
+    transition: 0.9s ease;
+    overflow-y: auto;
+}
+
+.letter h1 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 40px;
+    color: #c9184a;
+    margin-bottom: 8px;
+}
+
+.letter p {
+    font-size: 14.5px;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Flores */
+.flowers {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 12px;
+}
+.flower {
+    width: 32px;
+    height: 32px;
+    background: #ff758f;
+    border-radius: 50%;
+    margin: 0 6px;
+    position: relative;
+}
+.flower::before {
+    content: '';
+    width: 10px;
+    height: 32px;
+    background: #2d6a4f;
+    position: absolute;
+    bottom: -28px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Botões */
+.buttons {
+    margin-top: 16px;
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+}
+.answer {
+    padding: 10px 20px;
+    border-radius: 22px;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    background: #ff4d6d;
+    color: #fff;
+    box-shadow: 0 6px 14px rgba(0,0,0,0.25);
+    transition: 0.3s;
+}
+.answer:hover {
+    transform: scale(1.08);
+}
+
+/* Mensagens de amor */
+.love-text {
+    position: absolute;
+    font-family: 'Great Vibes', cursive;
+    font-size: 26px;
+    color: #c9184a;
+    animation: rise 4s ease-out forwards;
+    pointer-events: none;
+}
+
+@keyframes rise {
+    0% { transform: translateY(0); opacity: 1; }
+    100% { transform: translateY(-300px); opacity: 0; }
+}
+
+/* Ativo */
+.envelope.open .letter {
+    transform: translateX(-50%) scale(1);
+}
+.envelope.open::before,
+.envelope.open .open-btn {
+    display: none;
+}
+</style>
+</head>
+
+<body>
+
+<audio id="sound">
+    <source src="https://assets.mixkit.co/sfx/preview/mixkit-romantic-chord-1932.mp3" type="audio/mpeg">
+</audio>
+
+<div class="envelope" id="envelope">
+    <button class="open-btn" onclick="openLetter()">Clique aqui para abrir a carta</button>
+
+    <div class="letter">
+        <div class="flowers">
+            <div class="flower"></div>
+            <div class="flower"></div>
+            <div class="flower"></div>
+        </div>
+
+        <h1>Com amor</h1>
+
+        <p>Desde o dia em que te conheci, algo em mim mudou. Seu sorriso iluminou meus dias, sua voz se tornou a melodia favorita dos meus ouvidos, e seus olhos passaram a ser o refúgio onde me encontro sempre que o mundo lá fora parece um caos.</p>
+
+        <p>A cada momento que temos, percebo que a felicidade não está nas grandes coisas, mas nos pequenos detalhes: no jeito que você mexe no cabelo distraidamente, nas risadas inesperadas, nas conversas que poderiam durar horas sem que percebêssemos o tempo passar. Você trouxe cor para os meus dias e significado para os meus silêncios. Eu te amo, e sempre vou te amar.</p>
+
+        <p style="font-weight:bold;color:#c9184a;">
+        Ana Luiza, meu amor.<br>
+        Você aceita namorar comigo?
+        </p>
+
+        <div class="buttons">
+            <button class="answer" onclick="loveExplosion()">Sim💕</button>
+            <button class="answer">Não</button>
+        </div>
+    </div>
+</div>
+
+<script>
+function openLetter() {
+    document.getElementById("envelope").classList.add("open");
+    document.getElementById("sound").play();
+}
+
+function loveExplosion() {
+    for (let i = 0; i < 15; i++) {
+        let text = document.createElement("div");
+        text.className = "love-text";
+        text.innerText = "eu te amo muito, minha namorada";
+        text.style.left = Math.random() * 80 + "vw";
+        text.style.bottom = "0px";
+        document.body.appendChild(text);
+
+        setTimeout(() => {
+            text.remove();
+        }, 4000);
+    }
+}
+
+// Corações de fundo
+for (let i = 0; i < 18; i++) {
+    let heart = document.createElement("div");
+    heart.className = "heart";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.animationDelay = Math.random() * 6 + "s";
+    document.body.appendChild(heart);
+}
+</script>
+
+</body>
+</html>
